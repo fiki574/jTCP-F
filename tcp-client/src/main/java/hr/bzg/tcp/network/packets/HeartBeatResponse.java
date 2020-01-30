@@ -14,6 +14,8 @@ public final class HeartBeatResponse {
 			DataInputStream input = new DataInputStream(bytes);
 			int heartBeats = input.readInt();
 			client.setHeartBeats(heartBeats);
+			input.close();
+			bytes.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

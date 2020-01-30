@@ -142,6 +142,8 @@ public class Client {
 			output.write(bytes.toByteArray());
 			output.flush();
 		}
+		preOutput.close();
+		bytes.close();
 	}
 
 	public void sendKeyExchangeResponse() {
@@ -152,6 +154,8 @@ public class Client {
 			output.writeUTF(user.getFileKey());
 			output.flush();
 			sendPacket(KEY_EXCHANGE_RESPONSE, bytes.toByteArray(), true);
+			output.close();
+			bytes.close();
 		} catch (Exception ex) {
 			Log.error("Client.sendKeyExchange()", ex.toString());
 			ex.printStackTrace();
@@ -165,6 +169,8 @@ public class Client {
 			output.writeInt(heartBeats);
 			output.flush();
 			sendPacket(HEART_BEAT_RESPONSE, bytes.toByteArray(), false);
+			output.close();
+			bytes.close();
 		} catch (Exception ex) {
 			Log.error("Client.sendKeyExchange()", ex.toString());
 			ex.printStackTrace();
@@ -185,6 +191,8 @@ public class Client {
 		output.writeUTF("ping");
 		output.flush();
 		sendPacket(PING_NOTIFICATION, bytes.toByteArray(), false);
+		output.close();
+		bytes.close();
 	}
 
 	public void cleanup() {

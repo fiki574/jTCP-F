@@ -2,13 +2,14 @@ package hr.bzg.tcp;
 
 import static hr.bzg.tcp.utilities.Constants.*;
 
+import hr.bzg.tcp.action.*;
 import hr.bzg.tcp.network.*;
 import hr.bzg.tcp.utilities.*;
 
 public class Main {
 	public static void main(String[] args) {
 		User user = new User("tester", "123x321", "<no-hash>", "<no-key>", "<no-key>");
-		Action[] actions = new Action[] { null, null };
+		Action[] actions = new Action[] { new PingMismatchAction(), new ClientExchangeSuccessAction() };
 		runClient(user, actions);
 	}
 

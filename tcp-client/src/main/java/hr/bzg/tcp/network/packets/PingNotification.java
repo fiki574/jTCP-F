@@ -16,6 +16,8 @@ public final class PingNotification {
 			if (!s.equals("ping"))
 				if (client.getPingMismatchAction() != null)
 					client.getPingMismatchAction().perform(client);
+			input.close();
+			bytes.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

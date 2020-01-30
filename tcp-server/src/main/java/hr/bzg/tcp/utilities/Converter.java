@@ -27,6 +27,8 @@ public final class Converter {
 			String hash = input.readUTF();
 			String cryptoKey = input.readUTF();
 			String fileKey = input.readUTF();
+			input.close();
+			bytes.close();
 			return new User(username, pin, hash, cryptoKey, fileKey);
 		} catch (Exception ex) {
 			Log.error("Converter.userFromByteArray()", ex.getMessage());

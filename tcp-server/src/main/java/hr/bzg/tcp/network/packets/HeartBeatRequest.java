@@ -20,6 +20,8 @@ public final class HeartBeatRequest {
 				Log.warn("HeartBeatRequest.handlePacket()",
 						"Heartbeat mismatch for user '" + client.getUser().getUsername() + "'");
 			client.sendHeartBeatResponse();
+			input.close();
+			bytes.close();
 		} catch (Exception ex) {
 			Log.error("HeartBeatRequest.handlePacket()", ex.toString());
 			ex.printStackTrace();

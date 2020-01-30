@@ -63,8 +63,7 @@ public final class Client {
 
 	private void mapPacketHandlers() {
 		try {
-			Set<Class<?>> annotatedClasses = new Reflections("hr.bzg.tcp")
-					.getTypesAnnotatedWith(PacketHandler.class);
+			Set<Class<?>> annotatedClasses = new Reflections("hr.bzg.tcp").getTypesAnnotatedWith(PacketHandler.class);
 			annotatedClasses.forEach(annotatedClass -> handlers.put(
 					PacketId.valueOf(annotatedClass.getAnnotation(PacketHandler.class).packetId().toString()),
 					annotatedClass));
@@ -129,7 +128,7 @@ public final class Client {
 	public User getUser() {
 		return user;
 	}
-	
+
 	public Action getPingMismatchAction() {
 		return pingMismatchAction;
 	}
@@ -204,6 +203,8 @@ public final class Client {
 			output.write(user.toByteArray());
 			output.flush();
 			sendPacket(KEY_EXCHANGE_REQUEST, bytes.toByteArray(), true);
+			output.close();
+			bytes.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			isRunning = false;
@@ -220,12 +221,14 @@ public final class Client {
 			output.writeInt(heartBeats++);
 			output.flush();
 			sendPacket(HEART_BEAT_REQUEST, bytes.toByteArray(), false);
+			output.close();
+			bytes.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			isRunning = false;
 		}
 	}
-	
+
 	public void cleanup() {
 		try {
 			handlers.clear();

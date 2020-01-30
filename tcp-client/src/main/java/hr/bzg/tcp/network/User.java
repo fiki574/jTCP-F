@@ -28,7 +28,7 @@ public final class User {
 	public String getCryptoKey() {
 		return cryptoKey;
 	}
-	
+
 	public String getFileKey() {
 		return fileKey;
 	}
@@ -36,7 +36,7 @@ public final class User {
 	public void setCryptoKey(String key) {
 		cryptoKey = key;
 	}
-	
+
 	public void setFileKey(String key) {
 		fileKey = key;
 	}

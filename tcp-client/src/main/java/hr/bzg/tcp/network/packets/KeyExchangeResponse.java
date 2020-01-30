@@ -19,6 +19,8 @@ public final class KeyExchangeResponse {
 			client.setKeyExchangeDone(true);
 			if (client.getClientExchangeSuccessAction() != null)
 				client.getClientExchangeSuccessAction().perform(client);
+			input.close();
+			bytes.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
